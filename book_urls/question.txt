@@ -1,0 +1,6 @@
+Qn.  Find the url of each of the books listed either on http://www.amazon.com/b?node=8192263011
+or on http://www.amazon.com/gp/feature.html/ref=amb_link_399158622_4?ie=UTF8&docId=1002140381
+
+Hint : You'll have to use DOM and XPATH
+
+

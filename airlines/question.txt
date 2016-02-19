@@ -1,0 +1,50 @@
+Question 1
+
+Let's say you have two files with the name of city per line. Now you have to write a program which 
+
+takes name of two files prints following 3 cases:
+
+i. Words present in both file1 AND file2
+
+ii. Words present in file1 but NOT in file2
+
+iii. Words present in file1 OR in file2
+
+Note - please don't use library methods to find AND,NOT or OR
+
+Sample Input : q1-cities1.txt, q1-cities2.txt
+
+Question 2. 
+
+So you have solved Question 1: 
+
+Congrats, now let's change the content of the input files a bit. Now each line contains a pair of 
+
+cities. You can treat first file as the pair of cities between which Spicejet has flights and 2nd as 
+
+the pair of cities between which Indigo has flights.
+
+You need to solve the following problems
+
+i. Find all pair of cities from between which both have flight
+
+ii. Find all pair of cities for which has one airline but not the other.
+iii. What is the time complexity of this quetion in bigO notation. Can you
+improve it further ?
+
+
+
+Sample Input : spicejet.txt, indigo.txt
+
+Question 3. Bonus question –
+
+Can you solve this question if input has spelling mistake. For example one character is missing, or 
+
+different or added. Hint - use Levenshtein distance. You can use library method to calculate 
+
+Levenshtein distance.
+
+Question 4. Extra bonus -
+
+Write your own code for Levenshtein distance.
+
