@@ -2,9 +2,6 @@
 
 // Dom Selector will be - "a.title" for first hundered books and ".a-row > a.s-access-detail-page" for bottom 12 books
 
-
-
-/*
 // Extract urls using DOM-CSS selector method
 
 var request = require('request'),
@@ -25,4 +22,3 @@ request(mainUrl, function(err, req, res){
   console.log(book_urls.length);
 });
 
-*/

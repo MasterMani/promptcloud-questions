@@ -1,86 +1,62 @@
-//Answers for question 1 
-var fs = require('fs'),
+var logics = require('./myFunctions'),
+  fs = require('fs'),
   file_1_text = fs.readFileSync(__dirname + '/q1-cities1.txt'),
   file_2_text = fs.readFileSync(__dirname + '/q1-cities2.txt'),
-  wordsArr_1 = lineReader(file_1_text),
-  wordsArr_2 = lineReader(file_2_text);
+  wordsArr_1 = logics.lineReader(file_1_text),
+  wordsArr_2 = logics.lineReader(file_2_text);
 
-//Printing common words between both files
-var andAnswer = findAND(wordsArr_1, wordsArr_2);
+
+//Answers for question 1 
+// Printing common words between both files
+var andAnswer = logics.findAND(wordsArr_1, wordsArr_2);
 console.log("Below are the list of words present in both files \n");
-printArr(andAnswer);
+logics.printArr(andAnswer);
 
-//Printing the words only in file_1 not in file_2
-var notAnswer = findNOT(wordsArr_1, wordsArr_2);
+// Printing the words only in file_1 not in file_2
+var notAnswer = logics.findNOT(wordsArr_1, wordsArr_2);
 console.log("Below are the list of words present only in file_1 not in file_2 \n");
-printArr(notAnswer);
+logics.printArr(notAnswer);
 
-//Printing the words either in file_1 or file_2
-var orAnswer = findOR(wordsArr_1, wordsArr_2);
+// Printing the words either in file_1 or file_2
+var orAnswer = logics.findOR(wordsArr_1, wordsArr_2);
 console.log("Below are the list of words present in file_1 or file_2 \n");
-printArr(orAnswer);
+logics.printArr(orAnswer);
 
 //<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>//
 
 //Answers for question 2
 var spicejetText = fs.readFileSync(__dirname + '/spicejet.txt' ),
     indigoText = fs.readFileSync(__dirname + '/Indigo.txt'),
-    spicejetLocations = lineReader(spicejetText),
-    indigoLocatoins = lineReader(indigoText);
+    spicejetLocations = logics.lineReader(spicejetText),
+    indigoLocatoins = logics.lineReader(indigoText);
 
-var commonLocations = findAND(spicejetLocations, indigoLocatoins);
+var commonLocations = logics.findAND(spicejetLocations, indigoLocatoins);
 console.log("Below are the pair of list of locations where both flights are availbale:");
-printArr(commonLocations);
+logics.printArr(commonLocations);
 
-var onlySpicejet = findNOT(spicejetLocations, indigoLocatoins);
+var onlySpicejet = logics.findNOT(spicejetLocations, indigoLocatoins);
 console.log("Below are the pair of cites have only spicejet airlines sercive");
-printArr(onlySpicejet);
+logics.printArr(onlySpicejet);
 
-var onlyIndigo = findNOT(indigoLocatoins, spicejetLocations);
+var onlyIndigo = logics.findNOT(indigoLocatoins, spicejetLocations);
 console.log("Below are the pair of cites have only Indigo airlines sercive");
-printArr(onlyIndigo);
+logics.printArr(onlyIndigo);
 
 
-function printArr(arr){
-  arr.forEach(function(e){
-    console.log(e);
+//<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>//
+
+//Answer for question 3
+
+var exampleArr1 = ["AHMEDABAD0,AGARTALA","DELHI,AGARTALA","AGARTALA,AHMEDABAD","MUMBAI,AHMEDABAD","BHUBANESHWAR,BENGALORU","DELHI,BENGALOORU","JAIPUR,BENGALOORU","KOLKATA,BENGALOORU","LUCKNOW,BENGALOORU","MUMBAI,BENGALOORU"],
+    exampleArr2 = ["AGARTALA,AHMEDABAD","AGARTALA,HYDERABAD","AHMEDABAD,AGARTALA9","AHMEDABAD,MUMBAI","BENGALOORU,DELHI","BENGALOORU,HYDERABAD","BHUBANESHWAR,BENGALOORU","BHUBANESHWAR,MUMBAI","CHENNAI,DELHI","CHENNAI,GUWAHATI"],
+    matchingArr = [];
+
+exampleArr1.forEach(function(e, i){
+  exampleArr2.forEach(function(f, j){
+    var result = logics.isPairMatching(e, f);
+    if(result) matchingArr.push(e + " == " + f)
   });
-  console.log("<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-}
+});
 
-function lineReader(text){
-  var linesArr = [];
-  text.toString().split("\n").forEach(function(e, i){
-    linesArr.push(e.trim());
-  });
-  return linesArr;
-}
-
-function findAND(arr1, arr2){
-  var andArr = [];
-  for(var i = 0; i < arr1.length; i++){
-    for (var j = 0; j < arr2.length; j++) {
-      if(arr1[i] == arr2[j]) andArr.push(arr1[i]);
-    };
-  }
-  return andArr;
-}
-
-function findOR(arr1, arr2){
-  var orArr = arr1;
-  arr2.forEach(function(e, i){
-    if(orArr.indexOf(e) == -1) orArr.push(e);
-  });
-  return orArr;
-}
-
-function findNOT(arr1, arr2){
-  var notArr = [];
-  for(var i = 0; i < arr1.length; i++){
-    for(var j = 0; j < arr2.length; j++){
-      if(arr1[i] == arr2[j]) break;
-      if(j == arr2.length -1) notArr.push(arr1[i]);
-    }
-  }
-  return notArr;
-}
+console.log("Below are the pair of cites matched by using levenshtein method");
+logics.printArr(matchingArr);
